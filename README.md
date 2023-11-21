@@ -48,6 +48,8 @@ from nanodpo.multiclass_trainer import MulticlassTrainer
 # ...
 ```
 
+![wandb dpo causal_transformer](https://github.com/jamesliu/nanoDPO/blob/main/assets/dpo_causal_transformer_wandb.png)
+
 ## License
 
 nanoDPO is released under MIT License.
