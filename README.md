@@ -19,20 +19,27 @@ pip install nanoDPO
 
 ## Key Features
 
-* Causal Transformer & Simple Sequence Model: Incorporates both a Causal Transformer and a Simple Sequence Model for diverse modeling needs.
+* Causal Transformer & Simple Sequence Model: Incorporates both a Causal Transformer and a LSTM-based Simple Sequence Model for diverse modeling needs.
 * Preference Data Simulation: Utilizes a custom function, simulate_dpo_dataset_noise, to generate synthetic preference-based time series data.
 * Sequence Data Preparation: Prepares data for training with prepare_sequence_datasets, aligning time series data with the DPO framework.
 * DPO Training with PyTorch: Leverages the power of PyTorch for efficient and effective model training, complete with customizable parameters.
+* MulticlassTrainer provides an additional approach to handle time series data, focusing on traditional multiclass classification tasks. 
+* Cross-Entropy Loss for Multiclass Classification: Optimized for handling multiple classes in time series data.
+* Customizable Training and Evaluation: Flexible parameters for epochs, batch size, and learning rate.
 * Model Evaluation and Visualization: Offers tools for model evaluation and metrics visualization, ensuring an insightful analysis of performance.
 
 ## Usage
+
+Import the necessary modules from nanoDPO, including the CausalTransformer, SimpleSequenceModel, and dataset preparation functions. Utilize the DPOOneModelTrainer for Direct Preference Optimization or MulticlassTrainer for conventional multiclass training.
+
 ```python
 import torch
 from nanodpo.causal_transformer import CausalTransformer
 from nanodpo.simple_sequence_model import SimpleSequenceModel
 from nanodpo.preference_data import simulate_dpo_dataset_noise
 from nanodpo.sequence_data import prepare_sequence_datasets
-from nanodpo import DPOOneModelTrainer
+from nanodpo.dpo_onemodel_trainer import DPOOneModelTrainer
+from nanodpo.multiclass_trainer import MulticlassTrainer
 
 # Initialize and train your model
 # ...
