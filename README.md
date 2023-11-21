@@ -52,7 +52,7 @@ from nanodpo.multiclass_trainer import MulticlassTrainer
 
 ## License
 
-nanoDPO is released under MIT License.
+nanoDPO is licensed under the Apache License 2.0. See the [LICENSE](https://github.com/jamesliu/nanoDPO/blob/main/LICENSE) file for more details.
 
 ## Acknowledgments
 
