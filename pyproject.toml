@@ -1,0 +1,10 @@
+[tool.poetry]
+name = "nanoDPO"
+version = "0.1"
+description = "A flexible and efficient implementation of the Direct Preference Optimization (DPO) algorithm for time series data."
+readme = "README.md"
+authors = ["James Liu"]
+license = "Apache-2.0"
+
+[tool.poetry.extras]
+test = ["pytest"]
