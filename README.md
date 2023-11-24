@@ -57,3 +57,16 @@ nanoDPO is licensed under the Apache License 2.0. See the [LICENSE](https://gith
 ## Acknowledgments
 
 Inspired by the paper "[Direct Preference Optimization: Your Language Model is Secretly a Reward Model](https://arxiv.org/abs/2305.18290)," nanoDPO extends the concept of DPO to the domain of time series data, opening new avenues for research and application.
+
+## Citation
+
+```bibtex
+@misc{rafailov2023direct,
+  title   = {Direct Preference Optimization: Your Language Model is Secretly a Reward Model}, 
+  author  = {Rafael Rafailov and Archit Sharma and Eric Mitchell and Stefano Ermon and Christopher D. Manning and Chelsea Finn},
+  year    = {2023},
+  eprint  = {2305.18290},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.LG}
+}
+```

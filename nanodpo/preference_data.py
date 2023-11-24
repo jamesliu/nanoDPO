@@ -53,8 +53,8 @@ def simulate_dpo_dataset_noise(size=1000, feature_dim=3):
 
         elif Yw == 'NEUTRAL':
             base = np.random.uniform(-0.1, 1, feature_dim)
-            noise = np.random.normal(0, 0.1, feature_dim)
-            transformation = np.cos(np.linspace(-np.pi - 1, np.pi + 1, feature_dim))
+            noise = np.random.normal(0, 0.05, feature_dim)
+            transformation = np.tanh(np.linspace(-1, 1, feature_dim))
             features = base + noise + transformation
 
         else:
