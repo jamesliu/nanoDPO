@@ -3,7 +3,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from tango.nanodpo.sinusoidal_positional_encoding import SinusoidalPositionalEncoding
+from nanodpo.sinusoidal_positional_encoding import SinusoidalPositionalEncoding
 
 class CausalTransformerLayer(nn.Module):
     def __init__(self, d_model, n_head, dim_feedforward=1024, dropout=0.1):
