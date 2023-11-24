@@ -42,10 +42,17 @@ from nanodpo.dpo_onemodel_trainer import DPOOneModelTrainer
 from nanodpo.multiclass_trainer import MulticlassTrainer
 
 # Initialize and train your model
-# ...
-
+...
+model = CausalTransformer(d_feature= feature_dim, d_model=d_model, n_head=n_head, n_layer=n_layer, 
+                          num_actions=num_actions, max_len=sequence_len,
+                          device=device).to(device)
+...
+trainer = DPOOneModelTrainer(model=model, model_dir=f"dpo_{model_type}_model/", device=device,
+                             learning_rate=learning_rate, batch_size=batch_size)
+trainer.train(train_dataset, test_dataset, epochs=epochs, eval_interval=eval_interval)
 # Evaluate and visualize the results
-# ...
+trainer.plot_metrics()
+trainer.evaluate(test_dataset)
 ```
 
 ![wandb dpo causal_transformer](https://github.com/jamesliu/nanoDPO/blob/main/assets/dpo_causal_transformer_wandb.png)

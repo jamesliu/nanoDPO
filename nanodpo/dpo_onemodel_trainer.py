@@ -23,6 +23,7 @@ class DPOOneModelTrainer:
         self.criterion = nn.MarginRankingLoss(margin=margin).to(self.device)
         self.loss_history = []
         self.accuracy_history = []
+        self.eval_interval = -1
         self.model_dir = model_dir
         os.makedirs(self.model_dir, exist_ok=True)
 
@@ -43,7 +44,7 @@ class DPOOneModelTrainer:
             self.model.load_state_dict(torch.load(model_path, map_location=self.device))
 
     def train(self, train_dataset, test_dataset, epochs=10, eval_interval=2, step_size=10, gamma=0.1):
-
+        self.eval_interval = eval_interval
         train_loader = DataLoader(train_dataset, batch_size=self.batch_size, shuffle=True)
         # DataLoader setup remains the same
         self.model.train()
@@ -137,7 +138,9 @@ class DPOOneModelTrainer:
     
         return accuracy
     
-    def plot_metrics(self, eval_interval=2):
+    def plot_metrics(self):
+        if self.eval_interval < 1:
+            return
         plt.figure(figsize=(12, 5))
 
         # Plotting Loss
@@ -149,7 +152,7 @@ class DPOOneModelTrainer:
         plt.legend()
 
         # Adjusting x-axis for Accuracy
-        accuracy_x_axis = list(range(eval_interval, epochs + 1, eval_interval))
+        accuracy_x_axis = list(range(self.eval_interval, epochs + 1, self.eval_interval))
         if epochs % eval_interval != 0:
             accuracy_x_axis.append(epochs)  # Add the last epoch if it doesn't align with the interval
     
@@ -172,6 +175,8 @@ if __name__ == '__main__':
     print(f"Dataset size: {len(dataset)}")
     num_actions = len(actions)
     feature = dataset[0][0]
+    learning_rate = config['learning_rate']
+    batch_size = config['batch_size']
     sequence_len = config['sequence_len'] 
     step_size = config['step_size']
     epochs = 100
@@ -200,7 +205,7 @@ if __name__ == '__main__':
 
     model_version = None  # Set to a specific version if needed
     trainer = DPOOneModelTrainer(model=model, model_dir=f"dpo_{model_type}_model/", device=device,
-                                 learning_rate=config["learning_rate"], batch_size=config["batch_size"])
+                                 learning_rate=learning_rate, batch_size=batch_size)
     trainer.load_model(model_version)
 
     # Initialize Weights & Biases
